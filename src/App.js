@@ -9,7 +9,7 @@ function App() {
     <>
     <NavBarj/>
     <ItemListContainer/>
-    <ItemCount stock={5} initial={1}/>
+    {/* <ItemCount stock={5} initial={1}/> */}
     </>
   );
 }
