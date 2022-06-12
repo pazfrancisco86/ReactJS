@@ -1,36 +1,28 @@
 import { useState, useEffect } from "react"
+import { Button, ButtonGroup } from "react-bootstrap";
 
-const ItemCount = ({stock, initial, onAdd}) => {
+const ItemCount = ( { stock, initial, onAdd} ) => {
 
     const [cont, setCont] = useState(initial);
-    const [stack, setStock] = useState(stock);
+    const [cantd, setCantd] = useState(stock);
+
 
     function sumar(){
-            setCont(cont+initial);
-            setStock(stack-initial);
-            onAdd = console.log(cont);
-            if(stack == 0){
-            setCont(cont);
-            setStock(stack);
+            if (cont < cantd){
+                setCont( cont + 1 );
             }
         }
     function restar(){
-        setCont(cont-initial);
-        setStock(stack+initial);
-        onAdd = console.log(cont);
-        if(stack == stock){
-            setCont(cont);
-            setStock(stack);
-        }
+        if (cont > initial)
+        setCont(cont - 1 )
     }
 
   return (
     <div>
-        <p>Contador: {cont}</p>
-        <button onClick={sumar}>Sumar</button>
-
-        <button onClick={restar}>Restar!</button>
-        <button onClick={()=> console.log(cont, stack)}>Agregar al carrito</button>
+    <p>Contador: {cont}</p>
+    <button onClick={sumar}>Sumar</button>
+     <button onClick={restar}>Restar!</button>
+    <button onClick={()=>onAdd(cont)}>Agregar al carrito</button>
     </div>
   )
 }
