@@ -1,27 +1,40 @@
 import { useState, useEffect } from "react";
-import { getFetchOne } from "../helpers/getFetch";
+import { getFetch } from "../helpers/getFetch";
+import { useParams } from "react-router-dom";
 import ItemDetail from "../ItemDetail/ItemDetail";
 
 
 
 const ItemDetailContainer = () => {
-    const [producto, setProducto] = useState({})
+    const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true);
 
+    const { id } = useParams()
+
     useEffect(() => {
-      getFetchOne()
-      .then((resp)=> {
-          setProducto(resp)
-          setLoading(false)
-        })
-      .catch(err => console.log(err))
+      if(id){
+        getFetch()
+        .then((resp)=> {
+            setProductos(resp.filter((producto)=> producto.id === id))
+            setLoading(false)
+          })
+        .catch(err => console.log(err))
+      }else{
+        getFetch()
+        .then((resp)=> {
+            setProductos(resp)
+            setLoading(false)
+          })
+        .catch(err => console.log(err))
+      }
     }, [])
+
 
     return (
         <div>
             { loading ? <h1>Cargando detalle...</h1> :
         <div style={{flexDirection:"row", flexWrap:"wrap"}}>
-        <ItemDetail producto={producto} />
+        <ItemDetail productos={productos} />
         </div>
         }
         </div>

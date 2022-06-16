@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react"
-import { Button, ButtonGroup } from "react-bootstrap";
+import { useState } from "react"
 
 const ItemCount = ( { stock, initial, onAdd} ) => {
 
@@ -14,7 +13,7 @@ const ItemCount = ( { stock, initial, onAdd} ) => {
         }
     function restar(){
         if (cont > initial)
-        setCont(cont - 1 )
+        setCont(cont - 1 );
     }
 
   return (

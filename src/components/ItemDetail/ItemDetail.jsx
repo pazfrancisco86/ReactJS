@@ -1,17 +1,9 @@
-import { useState } from "react";
+import Detail from "../Detail/Detail"
 
-const ItemDetail = ({ producto }) => {
-
+const ItemDetail = ({ productos }) => {
     return (
-    <div className="row">
-    <div className="col-md-6">
-    <h2>{producto.title}</h2>
-    </div>
-    <div className="col-md-6">
-    <img src={producto.img}/>
-    <h3>{producto.price}</h3>
-    </div>
-    </div>
+        productos.map(prod => <Detail key={prod.id} prod={prod} />
+      )
     )
 }
 export default ItemDetail
