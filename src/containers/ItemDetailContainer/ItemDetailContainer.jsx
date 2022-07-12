@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from "react";
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import { getFetch } from "../../helpers/getFetch";

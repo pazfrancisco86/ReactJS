@@ -1,9 +1,9 @@
+import React from 'react';
 import { useState } from 'react'
 import ButtonIn from '../../containers/ButtonIn/ButtonIn'
 import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({ data }) => {
-  console.log(data.title);
   const [state, setState] = useState('button')
   const stateChange = () => {
     setState("change")

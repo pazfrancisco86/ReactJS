@@ -1,11 +1,12 @@
+import React from 'react';
 import { useState } from "react"
 import { useCartContext } from "../../contexts/cartContext";
-
 
 const ItemCount = ( { stock, initial, data} ) => {
 
     const [count, setCount] = useState(initial);
     const { AddToCart, cartList } = useCartContext()
+
     console.log(cartList);
 
     function add(){

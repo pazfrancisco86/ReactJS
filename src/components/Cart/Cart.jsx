@@ -1,3 +1,4 @@
+import React from 'react';
 import { useCartContext } from "../../contexts/cartContext"
 import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom"

@@ -1,3 +1,4 @@
+import React from 'react';
 import { createContext, useContext, useState } from "react";
 
 const CartContext = createContext([])
@@ -10,9 +11,9 @@ export const CartContextProvider = ({ children }) => {
     const AddToCart = (objProduct) => {
         let listedCart = [...cartList];
         
-        if (listedCart.some((item) => item.product.id === objProduct.product.id))
+        if (listedCart.some((item) => item.prod.id === objProduct.prod.id))
         {
-            listedCart.find((item) => item.product.id === objProduct.product.id).quantity += objProduct.quantity;
+            listedCart.find((item) => item.prod.id === objProduct.prod.id).quantity += objProduct.quantity;
             setCartList(listedCart)
         } else {
             setCartList([...cartList, objProduct]);

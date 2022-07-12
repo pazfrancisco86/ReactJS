@@ -1,7 +1,7 @@
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBarj from './components/NavBar/NavBarj';
-import ItemCount from './components/ItemCount/ItemCount';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import ItemListContainer from './containers/ItemListContainer/ItemListContainer';

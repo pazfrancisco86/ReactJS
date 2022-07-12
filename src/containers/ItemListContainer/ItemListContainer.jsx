@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from "react";
 import { getFetch } from "../../helpers/getFetch"
 import { useParams } from "react-router-dom";
