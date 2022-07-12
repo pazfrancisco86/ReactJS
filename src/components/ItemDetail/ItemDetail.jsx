@@ -1,9 +1,38 @@
-import Detail from "../Detail/Detail"
+import { useState } from 'react'
+import ButtonIn from '../../containers/ButtonIn/ButtonIn'
+import ItemCount from '../ItemCount/ItemCount'
 
-const ItemDetail = ({ productos }) => {
+const ItemDetail = ({ data }) => {
+  console.log(data.title);
+  const [state, setState] = useState('button')
+  const stateChange = () => {
+    setState("change")
+  }
+
     return (
-        productos.map(prod => <Detail key={prod.id} prod={prod} />
-      )
+          data.map(prod => 
+          <div key={prod.id}>
+          <div className="row">
+          <div className="col-md-6">
+          <h2>{`Este ${prod.category} viene con todas las caracteristicas que uno necesita para una buena compañia!`}</h2>
+          </div>
+          <div className="col-md-6">
+          <img alt="Mascota" src={prod.img}/>
+          <h3>{prod.price}</h3>
+          </div>
+          </div>
+          <div className='row'>
+            <div className='col'>
+            {
+              state === 'button' ?
+            <ItemCount data={{prod}} onAdd={stateChange} stock={5} initial={1}/>
+            :
+            <ButtonIn/>
+            }
+            </div>
+          </div>
+              </div>
+            )
     )
 }
 export default ItemDetail

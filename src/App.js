@@ -6,11 +6,13 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import ItemListContainer from './containers/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer/ItemDetailContainer';
+import { CartContextProvider } from './contexts/cartContext';
 
 function App() {
 
   return (
     <>
+    <CartContextProvider>
     <BrowserRouter>
     <NavBarj />
         <Routes>
@@ -21,6 +23,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     </BrowserRouter>
+    </CartContextProvider>
     </>
   );
 }

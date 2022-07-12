@@ -5,35 +5,35 @@ import ItemList from "../../components/ItemList/ItemList"
 
 
 
-const ItemListContainer = () => {
-  const [productos, setProductos] = useState([]);
+const ItemListContainer = ({ title }) => {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { categoriaId } = useParams()
+  const { categoryId } = useParams()
 
 useEffect(()=> {
-  if(categoriaId){
+  if(categoryId){
   getFetch()
     .then((resp)=> {
-      setProductos(resp.filter((producto)=> producto.categoria === categoriaId))
+      setData(resp.filter((products)=> products.category === categoryId))
       setLoading(false)
     })
     .catch(err => console.log(err))
   }else{
     getFetch()
     .then((resp)=> {
-      setProductos(resp)
+      setData(resp)
       setLoading(false)
     })
     .catch(err => console.log(err))
   }
-}, [categoriaId])
+}, [categoryId])
 
   return (
     <div>
       { loading ? <h1>Cargando...</h1>:
       <div style={{display: "flex", flexDirection:"row", flexWrap:"wrap"}}>
-        <ItemList productos={productos}/>
+        <ItemList products={data} title={title}/>
       </div>
       }
     </div>

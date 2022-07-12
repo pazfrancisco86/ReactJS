@@ -1,27 +1,39 @@
 import { useState } from "react"
-
-const ItemCount = ( { stock, initial, onAdd} ) => {
-
-    const [cont, setCont] = useState(initial);
-    const [cantd, setCantd] = useState(stock);
+import { useCartContext } from "../../contexts/cartContext";
 
 
-    function sumar(){
-            if (cont < cantd){
-                setCont( cont + 1 );
+const ItemCount = ( { stock, initial, data} ) => {
+
+    const [count, setCount] = useState(initial);
+    const { AddToCart, cartList } = useCartContext()
+    console.log(cartList);
+
+    function add(){
+            if (count < stock){
+                setCount( count + 1 );
             }
         }
-    function restar(){
-        if (cont > initial)
-        setCont(cont - 1 );
+    function subtract(){
+        if (count > initial)
+        setCount(count - 1 );
     }
+    function reset(){
+        setCount(initial)
+    }
+    function onAdd(){
+      AddToCart({
+          ...data,
+          quantity: count
+    })
+  }
 
   return (
     <div>
-    <p>Contador: {cont}</p>
-    <button onClick={sumar}>Sumar</button>
-     <button onClick={restar}>Restar!</button>
-    <button onClick={()=>onAdd(cont)}>Agregar al carrito</button>
+    <p>Contador: {count}</p>
+    <button onClick={add}>Sumar</button>
+    <button onClick={subtract}>Restar!</button>
+    <button onClick={reset}>Reiniciar</button>
+    <button onClick={onAdd}>Agregar al carrito</button>
     </div>
   )
 }
