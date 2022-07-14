@@ -5,9 +5,6 @@ import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({ data }) => {
   const [state, setState] = useState('button')
-  const stateChange = () => {
-    setState("change")
-  }
 
     return (
           data.map(prod => 
@@ -25,7 +22,7 @@ const ItemDetail = ({ data }) => {
             <div className='col'>
             {
               state === 'button' ?
-            <ItemCount data={{prod}} onAdd={stateChange} stock={5} initial={1}/>
+            <ItemCount data={{prod}} setState={setState} stock={5} initial={1}/>
             :
             <ButtonIn/>
             }

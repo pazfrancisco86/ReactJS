@@ -11,9 +11,10 @@ import { Link } from 'react-router-dom';
 const Item = ({products}) => {
     return (
         <div className='col-md-4 p-1'>
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 300 }}>
       <CardMedia component="img"
-        height="300"
+        height="345"
+        width= "345"
         image={products.img}/>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
