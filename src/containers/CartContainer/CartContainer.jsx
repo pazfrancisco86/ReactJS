@@ -13,7 +13,7 @@ const CartContainer = () => {
    </Button>
    <p>Total: $ {totalPrice()}</p>
     {
-        cartList.map((item) => ( <CartTable item={item} key={item.product.id} />) )
+        cartList.map((item) => ( <CartTable item={item} key={item.prod.id} />) )
     }</div>
   )
 }

@@ -10,13 +10,14 @@ const ItemListContainer = ({ title }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { categoryId } = useParams()
+  const { categoryId } = useParams();
 
+  
 useEffect(()=> {
   if(categoryId){
   getFetch()
     .then((resp)=> {
-      setData(resp.filter((products)=> products.category === categoryId))
+      setData(resp.filter((products)=> products.categoryId === categoryId))
       setLoading(false)
     })
     .catch(err => console.log(err))

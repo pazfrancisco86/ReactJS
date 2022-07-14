@@ -6,8 +6,8 @@ const CartTable = ({ item }) => {
     const { deleteProd } = useCartContext()
     console.log(item);
   return (
-    <div>{item.product.title}
-    <Button variant="danger" onClick={()=>{deleteProd(item.product.id)}}>
+    <div>{item.prod.title}
+    <Button variant="danger" onClick={()=>{deleteProd(item.prod.id)}}>
                                 X
                             </Button>
     </div>

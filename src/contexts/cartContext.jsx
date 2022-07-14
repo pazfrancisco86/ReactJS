@@ -27,13 +27,13 @@ const totalPrice = () => {
 
     cartList.forEach((newItem) => {
         total +=
-        parseInt(newItem.product.price) * parseInt(newItem.quantity)
+        parseInt(newItem.prod.price) * parseInt(newItem.quantity)
         });
         return parseInt(total);
     };
 
 const deleteProd = (id) => {
-    setCartList(cartList.filter((newItem) => newItem.product.id !== id))
+    setCartList(cartList.filter((newItem) => newItem.prod.id !== id))
 }
 
 const iconCart = () => cartList.reduce((acum, valor) => acum + valor.quantity, 0);
