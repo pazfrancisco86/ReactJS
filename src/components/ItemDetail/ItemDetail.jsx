@@ -5,7 +5,6 @@ import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({ data }) => {
   const [state, setState] = useState('button')
-  console.log(data);
     return (
           <div key={data.id}>
           <div className="row">

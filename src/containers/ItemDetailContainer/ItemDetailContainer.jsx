@@ -14,7 +14,7 @@ const ItemDetailContainer = () => {
 
   useEffect(() => {
       const db = getFirestore()
-      const queryProduct  = doc(db, "productos")
+      const queryProduct  = doc(db, "productos", id)
       getDoc(queryProduct) //promesa
       .then(resp => setData( { id:resp.id, ...resp.data() } ))
       .catch(err => console.log(err))
