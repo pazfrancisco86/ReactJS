@@ -5,31 +5,29 @@ import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({ data }) => {
   const [state, setState] = useState('button')
-
+  console.log(data);
     return (
-          data.map(prod => 
-          <div key={prod.id}>
+          <div key={data.id}>
           <div className="row">
           <div className="col-md-6">
-          <h2>{`Este ${prod.category} viene con todas las caracteristicas que uno necesita para una buena compañia!`}</h2>
+          <h2>{`Este ${data.categoryId} viene con todas las caracteristicas que uno necesita para una buena compañia!`}</h2>
           </div>
           <div className="col-md-6">
-          <img alt="Mascota" src={prod.img}/>
-          <h3>{prod.price}</h3>
+          <img alt="Mascota" src={data.img}/>
+          <h3>{data.price}</h3>
           </div>
           </div>
           <div className='row'>
             <div className='col'>
             {
               state === 'button' ?
-            <ItemCount data={{prod}} setState={setState} stock={5} initial={1}/>
+            <ItemCount data={{data}} setState={setState} stock={5} initial={1}/>
             :
             <ButtonIn/>
             }
             </div>
           </div>
               </div>
-            )
     )
 }
 export default ItemDetail

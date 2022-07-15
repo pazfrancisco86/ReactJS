@@ -1,26 +1,26 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
-import { getFetch } from "../../helpers/getFetch";
 import { useParams } from "react-router-dom";
+import { doc, getDoc, getFirestore, collection } from "firebase/firestore";
 
 
 
 const ItemDetailContainer = () => {
+    const [bool, setBool] = useState(true)
     const { id } = useParams()
     const [data, setData] = useState({})
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        getFetch()
-        .then((resp)=> {
-            setData(resp.filter((prod)=> prod.id === id))
-            setLoading(false)
-          })
-        .catch(err => console.log(err))
-       /*  .finally(console.log(data)) */
-    }, [id])
+  useEffect(() => {
+      const db = getFirestore()
+      const queryProduct  = doc(db, "productos")
+      getDoc(queryProduct) //promesa
+      .then(resp => setData( { id:resp.id, ...resp.data() } ))
+      .catch(err => console.log(err))
+      .finally(() => setLoading(false))
 
+  }, [bool])
 
     return (
         <div>
