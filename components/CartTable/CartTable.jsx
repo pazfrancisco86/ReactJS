@@ -7,11 +7,11 @@ const CartTable = ({ item }) => {
 
   return (
               <tr>
-                  <td><img style={{width: "100px", height:"100px"}} alt="mascota" src={item.data.img} /></td>
-                  <td>{item.data.title}</td>
+                  <td><img style={{width: "100px", height:"100px"}} alt="mascota" src={item.prod.img} /></td>
+                  <td>{item.prod.title}</td>
                   <td>{item.quantity}</td>
-                  <td>${item.data.price}</td>
-                  <td><Button variant="danger" onClick={()=>{deleteProd(item.data.id)}}>
+                  <td>${item.prod.price}</td>
+                  <td><Button variant="danger" onClick={()=>{deleteProd(item.prod.id)}}>
                        X
                   </Button></td>
               </tr>
