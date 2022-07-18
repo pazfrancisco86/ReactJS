@@ -24,7 +24,7 @@ const CartContainer = () => {
       const db = getFirestore()
       const orderCollection = collection(db, 'orders')
       addDoc(orderCollection, order)
-      .then(resp =>{ console.log(resp)
+      .then(resp =>{ console.log(`Su numero de orden es: ${resp.id}`)
       })
 
       //actualizar stock
@@ -41,7 +41,7 @@ const CartContainer = () => {
       .then(resp=> resp.docs.forEach(res => batch.update(res.ref, {
         stock: res.data().stock - cartList.find(item => item.data.id === res.id).quantity
       })))
-      .finally(()=> alert('stock actualizado'))
+      .finally(()=> removeCart())
 
       batch.commit()
     }
