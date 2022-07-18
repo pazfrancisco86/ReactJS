@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
-import { doc, getDoc, getFirestore, collection } from "firebase/firestore";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 
 

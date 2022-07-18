@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "../../components/ItemList/ItemList"
-import { doc, getDoc, getDocs, getFirestore, collection, query, where } from "firebase/firestore"
+import { getDocs, getFirestore, collection, query, where } from "firebase/firestore"
 
 
 
