@@ -7,7 +7,6 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 
 const ItemDetailContainer = () => {
-    const [bool, setBool] = useState(true)
     const { id } = useParams()
     const [data, setData] = useState({})
     const [loading, setLoading] = useState(true);
@@ -20,7 +19,7 @@ const ItemDetailContainer = () => {
       .catch(err => console.log(err))
       .finally(() => setLoading(false))
 
-  }, [bool])
+  } , [id])
 
     return (
         <div>

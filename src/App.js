@@ -7,6 +7,8 @@ import ItemListContainer from './containers/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './containers/ItemDetailContainer/ItemDetailContainer';
 import { CartContextProvider } from './contexts/cartContext';
 import CartContainer from './containers/CartContainer/CartContainer';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
             <Route path='/cart' element={<CartContainer/>}/>
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+    <ToastContainer/>
     </BrowserRouter>
     </CartContextProvider>
     </>

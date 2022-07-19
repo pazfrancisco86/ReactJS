@@ -1,17 +1,28 @@
-import React from 'react';
-import { Button, Container, Table } from "react-bootstrap"
+import React, { useEffect, useState } from 'react';
+import { Container, Table } from "react-bootstrap"
 import { useCartContext } from "../../contexts/cartContext"
 import CartTable from "../CartTable/CartTable"
-import { addDoc, collection, documentId, getDocs, getFirestore, query, where, writeBatch } from 'firebase/firestore';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import CartButtons from '../CartButtons/CartButtons';
+import CartForm from '../CartForm/CartForm';
 
-const Cart = () => {
-    const { cartList, totalPrice, removeCart } = useCartContext()
-    async function generateOrder(e) {
+
+export default function Cart() {
+    const { cartList, removeCart } = useCartContext()
+    const [purchaseId, setPurchaseId] = useState(false);
+    const [atCheckout, setAtCheckout] = useState(false);
+
+    let totalPrice = 0;
+    cartList.forEach((item) => {
+    totalPrice = totalPrice + item.quantity * item.data.price;
+  });
+
+    function generateOrder(e) {
       e.preventDefault()
       let order = {}
 
-      order.buyer = {name: "asd", lastname: "asdasd", phone: "234234234"}
-      order.total = totalPrice()
+      order.buyer = {name: e.target.name.value, email: e.target.email.value,tel: e.target.tel.value}
+      order.total = totalPrice
 
       order.items = cartList.map(cartItem => {
         const id = cartItem.data.id
@@ -23,31 +34,39 @@ const Cart = () => {
       const db = getFirestore()
       const orderCollection = collection(db, 'orders')
       addDoc(orderCollection, order)
-      .then(resp =>{ console.log(`Su numero de orden es: ${resp.id}`)
+      .then(resp =>{ 
+        setPurchaseId(resp.id);
+        console.log(resp.id)
       })
-
-      //actualizar stock
-      const queryCollectionStock = collection(db,'productos')
-
-      const queryUpdateStock = await query(
-        queryCollectionStock,
-        where ( documentId(), 'in', cartList.map(it => it.data.id))
-      )
-
-      const batch = writeBatch(db)
-
-      await getDocs(queryUpdateStock)
-      .then(resp=> resp.docs.forEach(res => batch.update(res.ref, {
-        stock: res.data().stock - cartList.find(item => item.data.id === res.id).quantity
-      })))
-      .finally(()=> removeCart())
-
-      batch.commit()
     }
 
+    useEffect(() => {
+      return () => {
+        if(purchaseId){removeCart(); }
+      }
+    },)
+
+    if (purchaseId) {
+      return (
+        <div className="py-5">
+          <h1>Compra exitosa!</h1>
+          <h3>
+            Tu orden de compra es: <strong>{purchaseId}</strong>
+          </h3>
+        </div>
+      );
+    }
+
+    if (atCheckout) {
+      return (
+        <div className="py-5">
+          <CartForm generateOrder={generateOrder} />
+        </div>
+      );
+    }
 
   return (
-    <>
+    <div>
     <Container>
     <Table className="mt-5" striped bordered hover variant="light">
     <thead>
@@ -64,29 +83,10 @@ const Cart = () => {
         cartList.map((item) => ( <CartTable item={item} key={item.data.id} />) )
     }
     </tbody>
-    <tbody>
-      <tr>
-   <th>Total: $ {totalPrice()}</th>
-      </tr>
-    </tbody>
     </Table>
-    <div className='form-row'>
-    <div className="form-group col-md-6">
-    <Button variant="danger" onClick={removeCart }>
-                    Borrar Todo
-   </Button>
-    </div>
-   <br></br>
-   <div className="form-group col-md-6">
-   <Button variant="danger" onClick={generateOrder}>
-                    Terminar compra
-   </Button>
-   </div>
-    </div>
-    <br></br>
     </Container>
-    </>
+    <CartButtons setAtCheckout={setAtCheckout} totalPrice={totalPrice} />
+    </div>
   )
 }
 
-export default Cart

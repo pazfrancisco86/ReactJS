@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from "react"
+import { Button } from 'react-bootstrap';
 import { useCartContext } from "../../contexts/cartContext";
 
 const ItemCount = ( { stock, initial, data, setState} ) => {
@@ -32,10 +33,10 @@ const ItemCount = ( { stock, initial, data, setState} ) => {
   return (
     <div>
     <p>Contador: {count}</p>
-    <button onClick={add}>Sumar</button>
-    <button onClick={subtract}>Restar!</button>
-    <button onClick={reset}>Reiniciar</button>
-    <button onClick={onAdd}>Agregar al carrito</button>
+    <Button variant="danger" onClick={subtract}>-</Button>
+    <Button variant="success" onClick={add}>+</Button>
+    <Button variant="warning" onClick={reset}>Reiniciar</Button>
+    <Button variant="info" onClick={onAdd}>Agregar al carrito</Button>
     </div>
   )
 }
