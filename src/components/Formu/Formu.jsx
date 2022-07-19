@@ -6,33 +6,37 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useCartContext } from "../../contexts/cartContext";
 
-function Formu() {
-    const { addForm } = useCartContext()
-    const [state, setState] = useState([])
+const Formu = () => {
+    const { cartList, totalPrice, removeCart } = useCartContext()
+    function generateOrder2(e){
+        e.preventDefault()
+        let order = {}
 
+        order.buyer = {name: buyerName, lastname: buyerLastname}
+        order.total = totalPrice()
 
-    const handleInputChange = (e) => { 
-        setState({
-            ...state,
-            [e.target.name] : e.target.value
+        order.items = cartList.map(cartItem =>{
+            const id = cartItem.data.id
+            const title = cartItem.data.title
+            const price = cartItem.data.price * cartItem.quantity
         })
+        return {id, title, price}
     }
-    function addListform(){
-        /* addForm({...state}) */
-        console.log(state)
-    }
+    console.log(order)
+
+
 
   return (
     <Form >
       <Row className="mb-3">
         <Form.Group as={Col} controlId="text">
           <Form.Label >Nombre</Form.Label>
-          <Form.Control type="text" name="name" placeholder="Ingresa tu nombre" />
+          <Form.Control type="text" name={buyerName} placeholder="Ingresa tu nombre" />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridLastname">
           <Form.Label>Apellido</Form.Label>
-          <Form.Control type="Lastname" name="lastname" placeholder="Ingresa tu apellido" />
+          <Form.Control type="Lastname" name={buyerLastname} placeholder="Ingresa tu apellido" />
         </Form.Group>
       </Row>
 
@@ -73,11 +77,11 @@ function Formu() {
         <Form.Check type="checkbox" label="Deseo recibir promociones" />
       </Form.Group>
 
-      <Button onClick={()=>console.log(state)} variant="primary" type="submit">
+      <Button onClick={generateOrder2} variant="primary" type="submit">
         Enviar pedido
       </Button>
     </Form>
   );
 }
 
-export default Formu;
+/* export default Formu; */

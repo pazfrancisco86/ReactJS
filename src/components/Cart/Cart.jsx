@@ -3,15 +3,14 @@ import { Button, Container, Table } from "react-bootstrap"
 import { useCartContext } from "../../contexts/cartContext"
 import CartTable from "../CartTable/CartTable"
 import { addDoc, collection, documentId, getDocs, getFirestore, query, where, writeBatch } from 'firebase/firestore';
-import Formu from '../Form/Form';
 
 const Cart = () => {
-    const { cartList, totalPrice, removeCart, orderBuyer } = useCartContext()
+    const { cartList, totalPrice, removeCart } = useCartContext()
     async function generateOrder(e) {
       e.preventDefault()
       let order = {}
 
-      order.buyer = []
+      order.buyer = {name: "asd", lastname: "asdasd", phone: "234234234"}
       order.total = totalPrice()
 
       order.items = cartList.map(cartItem => {
@@ -85,7 +84,6 @@ const Cart = () => {
    </div>
     </div>
     <br></br>
-    <Formu/>
     </Container>
     </>
   )
