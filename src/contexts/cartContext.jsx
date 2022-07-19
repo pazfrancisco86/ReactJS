@@ -7,10 +7,15 @@ export const useCartContext = () => useContext(CartContext)
 export const CartContextProvider = ({ children }) => {
     // estados y funciones globales ACA
     const [cartList, setCartList] = useState([])
+    const [orderBuyer, setorderBuyer] = useState([])
+
+    const addForm = (objBuyer) =>{
+        setorderBuyer([...orderBuyer,objBuyer])
+        console.log(orderBuyer)
+    }
 
     const AddToCart = (objProduct) => {
         let listedCart = [...cartList];
-        console.log(objProduct)
         if (listedCart.some((item) => item.data.id === objProduct.data.id))
         {
             listedCart.find((item) => item.data.id === objProduct.data.id).quantity += objProduct.quantity;
@@ -43,6 +48,8 @@ const iconCart = () => cartList.reduce((acum, valor) => acum + valor.quantity, 0
         <CartContext.Provider 
         value={{
             cartList,
+            orderBuyer,
+            addForm,
             setCartList,
             AddToCart,
             deleteProd,
