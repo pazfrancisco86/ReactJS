@@ -36,7 +36,6 @@ export default function Cart() {
       addDoc(orderCollection, order)
       .then(resp =>{ 
         setPurchaseId(resp.id);
-        console.log(resp.id)
       })
     }
 

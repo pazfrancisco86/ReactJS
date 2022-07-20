@@ -6,9 +6,7 @@ import { useCartContext } from "../../contexts/cartContext";
 const ItemCount = ( { stock, initial, data, setState} ) => {
 
     const [count, setCount] = useState(initial);
-    const { AddToCart, cartList } = useCartContext()
-
-    console.log(cartList);
+    const { AddToCart } = useCartContext()
 
     function add(){
             if (count < stock){
