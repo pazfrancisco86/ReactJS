@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import { useCartContext } from "../../contexts/cartContext"
+import Button from '@mui/material/Button';
+import { ButtonGroup } from "@mui/material";
 
 function CartButtons({ setAtCheckout, totalPrice }) {
     const { cartList, removeCart } = useCartContext()
@@ -21,24 +22,22 @@ function CartButtons({ setAtCheckout, totalPrice }) {
         </h2>
       </div>
       <div>
+      <ButtonGroup>
         <Button
-          className="m-1"
-          variant="danger"
           onClick={() => {
             removeCart();
           }}
         >
-          Vaciar Carrito
+          <strong>Vaciar Carrito</strong>
         </Button>
         <Button
-          className="m-1"
-          variant="success"
           onClick={(e) => {
             setAtCheckout(true);
           }}
         >
-          Comprar Items
+          <strong>Comprar Items</strong>
         </Button>
+      </ButtonGroup>
       </div>
     </>
   );

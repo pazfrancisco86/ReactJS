@@ -21,7 +21,7 @@ const Item = ({products}) => {
         {`${products.title}`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {`Precio: ${products.price} -
+          {`Precio: U$D ${products.price} -
           Todo lo que buscas en una mascota animada ! (????)`}
         </Typography>
       </CardContent>

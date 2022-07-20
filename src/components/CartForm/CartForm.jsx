@@ -1,21 +1,18 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { toast } from "react-toastify";
+import Swal from 'sweetalert2'
 
 function CartForm({ generateOrder }) {
   function submitHandler(e) {
     e.preventDefault();
     generateOrder(e);
-    toast.success("¡Compra Exitosa!", {
-      position: "bottom-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Compra realizada!',
+      showConfirmButton: false,
+      timer: 1500
     });
   }
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from "react"
-import { Button } from 'react-bootstrap';
 import { useCartContext } from "../../contexts/cartContext";
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/material/Button';
 
 const ItemCount = ( { stock, initial, data, setState} ) => {
 
@@ -30,11 +31,13 @@ const ItemCount = ( { stock, initial, data, setState} ) => {
 
   return (
     <div>
-    <p>Contador: {count}</p>
-    <Button variant="danger" onClick={subtract}>-</Button>
-    <Button variant="success" onClick={add}>+</Button>
-    <Button variant="warning" onClick={reset}>Reiniciar</Button>
-    <Button variant="info" onClick={onAdd}>Agregar al carrito</Button>
+    <p><strong>Cantidad: {count}</strong></p>
+    <ButtonGroup>
+    <Button  onClick={subtract}><strong>-</strong></Button>
+    <Button  onClick={add}><strong>+</strong></Button>
+    <Button  onClick={reset}><strong>Reiniciar</strong></Button>
+    <Button  onClick={onAdd}><strong>Agregar al carrito</strong></Button>
+    </ButtonGroup>
     </div>
   )
 }

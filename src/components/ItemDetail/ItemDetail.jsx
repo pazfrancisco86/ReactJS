@@ -13,7 +13,7 @@ const ItemDetail = ({ data }) => {
           </div>
           <div className="col-md-6">
           <img alt="Mascota" src={data.img}/>
-          <h3>{data.price}</h3>
+          <h3>U$D {data.price}</h3>
           </div>
           </div>
           <div className='row'>
